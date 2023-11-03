@@ -232,7 +232,7 @@ createApp({
         this.contacts[this.activeIndex].messages.push(msg);
       }
 
-      setTimeout(this.answer,60000);
+      setTimeout(this.answer,1000);
     },
     answer(){
       this.hours();
