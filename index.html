@@ -59,12 +59,13 @@
                                 <i class="fa-solid fa-magnifying-glass light-icons"></i>
                             </span>
                             <input type="text" class=" col-11 border-0 rounded-end-2 bg-white py-2 outline-none"
-                                placeholder="Cerca o inizia una nuova chat">
+                                placeholder="Cerca o inizia una nuova chat" v-model="search">
                         </div>
                     </div>
                     <div class=" overflow-y-auto flex-grow-1">
-                        <div v-for="(contact,index) in contacts" class="contact p-3 d-flex justify-content-between" :class="active(index)" 
-                            @click="activation(index)">
+                        <div v-for="(contact,index) in contacts" class="contact p-3 justify-content-between"
+                            :class="[filter(contact),active(index)]" @click="activation(index)">
+
                             <div class="d-flex align-items-center">
                                 <div class="img rounded-circle overflow-hidden">
                                     <img :src="contacts[index].avatar" :alt="contacts[index].name" class="w-100">
@@ -74,13 +75,15 @@
                                         {{contacts[index].name}}
                                     </div>
                                     <div class="grey-text">
-                                        <em v-if=" contact.messages[contacts[index].messages.length - 1].status === 'sent'" class="fw-bold">Tu: </em>{{lastMsg(index)}}
+                                        <em v-if=" contact.messages[contacts[index].messages.length - 1].status === 'sent'"
+                                            class="fw-bold">Tu: </em>{{lastMsg(index)}}
                                     </div>
                                 </div>
                             </div>
                             <div>
 
                             </div>
+
                         </div>
 
                     </div>
@@ -129,8 +132,8 @@
                             <input type="text" class=" col-10 border-0 rounded-2 bg-white py-2 outline-none"
                                 placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="sendMsg">
                             <div class="col-1 d-flex justify-content-center align-items-center">
-                                <div
-                                    class=" send-icon rounded-circle bg-success d-flex justify-content-center align-items-center" @click="sendMsg()">
+                                <div class=" send-icon rounded-circle bg-success d-flex justify-content-center align-items-center"
+                                    @click="sendMsg()">
                                     <i class="fa-solid fa-paper-plane"></i>
                                 </div>
                             </div>

@@ -181,7 +181,8 @@ createApp({
       ],
       activeIndex: 0,
       newMessage: '',
-      time: ''
+      time: '',
+      search: ''
     }
   },
   methods: {
@@ -230,12 +231,12 @@ createApp({
         }
         this.newMessage = '';
         this.contacts[this.activeIndex].messages.push(msg);
-        setTimeout(this.answer,1000);
+        setTimeout(this.answer, 1000);
       }
 
 
     },
-    answer(){
+    answer() {
       this.hours();
       let msg = {
         date: this.time,
@@ -244,16 +245,38 @@ createApp({
       }
       this.contacts[this.activeIndex].messages.push(msg);
     },
-    hours(){
+    hours() {
       const d = new Date();
       let day = d.getDay();
       let mounth = d.getMonth();
       let year = d.getFullYear();
       let h = d.getHours();
-      let m =(d.getMinutes()< 10 ? '0' : '') + d.getMinutes();
+      let m = (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
       let s = d.getSeconds();
       let time = day + '/' + mounth + '/' + year + ' ' + h + ":" + m + ":" + s;
       this.time = time
     },
+    filter(contact){
+      if (contact.visible){
+        return 'd-flex'
+      }
+      else{
+        return 'd-none'
+      }
+    }
+  },
+  computed: {
+    searchFilter() {
+      this.contacts.forEach(element => {
+        let convertFind = this.search.toUpperCase();
+        let convertName = element.name.toUpperCase();
+        if (convertName.startsWith(convertFind)) {
+          element.visible = true;
+        }
+        else {
+          element.visible = false;
+        }
+      });
+    }
   }
 }).mount('#app')
