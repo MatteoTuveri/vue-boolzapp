@@ -184,8 +184,13 @@ createApp({
   },
   methods: {
 
-    ciao(index){
+    activation(index){
       this.activeIndex=index;
+    },
+    active(index){
+      if(this.activeIndex === index){
+        return 'active'
+      }
     },
 
     lastMsg(index) {
