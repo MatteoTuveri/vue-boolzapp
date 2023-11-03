@@ -179,16 +179,18 @@ createApp({
           ],
         }
       ],
-      activeIndex:0,
+      activeIndex: 0,
+      newMessage: '',
+      time: ''
     }
   },
   methods: {
 
-    activation(index){
-      this.activeIndex=index;
+    activation(index) {
+      this.activeIndex = index;
     },
-    active(index){
-      if(this.activeIndex === index){
+    active(index) {
+      if (this.activeIndex === index) {
         return 'active'
       }
     },
@@ -203,20 +205,54 @@ createApp({
       }
     },
 
-    messageStatus(index){
+    messageStatus(index) {
       let status = this.contacts[this.activeIndex].messages[index].status;
-      if(status === 'sent'){
+      if (status === 'sent') {
         return 'sent'
       }
-      else{
+      else {
         return 'received'
       }
     },
 
-    messageHour(index){
+    messageHour(index) {
       let dayAndHour = this.contacts[this.activeIndex].messages[index].date.split(' ');
-      let hour = dayAndHour[dayAndHour.length-1].split(':')
+      let hour = dayAndHour[dayAndHour.length - 1].split(':')
       return `${hour[0]}:${hour[1]}`
-    }
+    },
+    sendMsg() {
+      if (this.newMessage.trim().length !== 0) {
+        this.hours();
+        let msg = {
+          date: this.time,
+          message: this.newMessage,
+          status: 'sent'
+        }
+        this.newMessage = '';
+        this.contacts[this.activeIndex].messages.push(msg);
+      }
+
+      setTimeout(this.answer,60000);
+    },
+    answer(){
+      this.hours();
+      let msg = {
+        date: this.time,
+        message: 'ok',
+        status: 'received'
+      }
+      this.contacts[this.activeIndex].messages.push(msg);
+    },
+    hours(){
+      const d = new Date();
+      let day = d.getDay();
+      let mounth = d.getMonth();
+      let year = d.getFullYear();
+      let h = d.getHours();
+      let m = d.getMinutes();
+      let s = d.getSeconds();
+      let time = day + '/' + mounth + '/' + year + ' ' + h + ":" + m + ":" + s;
+      this.time = time
+    },
   }
 }).mount('#app')

@@ -77,6 +77,10 @@
     background-image: url(/Img/mine.jpg);
 }
 
+.h-0{
+    height: 0;
+}
+
 .bottom{
     background-color: var(--bottom);
 }
@@ -101,3 +105,20 @@
     bottom:0;
     right: 0;
 }
+
+/* scroll-bars */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: none;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 25px;
+  }
+  
