@@ -182,7 +182,9 @@ createApp({
       activeIndex: 0,
       newMessage: '',
       time: '',
-      search: ''
+      search: '',
+      menuWindow:null,
+      clickedMessageID : null
     }
   },
   methods: {
@@ -206,6 +208,12 @@ createApp({
       }
     },
 
+    lastMsgHour(index) {
+      let contact = this.contacts[index].messages[this.contacts[index].messages.length - 1].date.split(' ');
+      let hour = contact[contact.length - 1].split(':');
+      return `${hour[0]}:${hour[1]}`
+    },
+
     messageStatus(index) {
       let status = this.contacts[this.activeIndex].messages[index].status;
       if (status === 'sent') {
@@ -215,12 +223,34 @@ createApp({
         return 'received'
       }
     },
+    messageMenu(index) {
+      let status = this.contacts[this.activeIndex].messages[index].status;
+      if (status === 'sent') {
+        return 'menu-s'
+      }
+      else {
+        return 'menu-r'
+      }
+    },
+    clickMenu(index){
+
+    },
+
+    menu(index){
+      if(this.menuWindow === index){
+        this.menuWindow = null;
+      }
+      else{
+        this.menuWindow = index
+      }
+    },
 
     messageHour(index) {
       let dayAndHour = this.contacts[this.activeIndex].messages[index].date.split(' ');
       let hour = dayAndHour[dayAndHour.length - 1].split(':')
       return `${hour[0]}:${hour[1]}`
     },
+
     sendMsg() {
       if (this.newMessage.trim().length !== 0) {
         this.hours();
@@ -233,7 +263,6 @@ createApp({
         this.contacts[this.activeIndex].messages.push(msg);
         setTimeout(this.answer, 1000);
       }
-
 
     },
     answer() {
@@ -263,7 +292,8 @@ createApp({
       else{
         return 'd-none'
       }
-    }
+    },
+
   },
   computed: {
     searchFilter() {

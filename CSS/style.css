@@ -106,6 +106,33 @@
     right: 0;
 }
 
+.menu{
+    font-size: 0.6em;
+    top:0;
+    right: 0;
+}
+.menu-s{
+    z-index: 1000;
+    top:80%;
+    right: 0;
+    width: 200px;
+}
+.menu-r{
+    z-index: 1000;
+    top:80%;
+    left: 0;
+    width: 200px;
+}
+
+.rotate0{
+    transform: rotate(0deg);
+    transition: 1s;
+}
+.rotate180{
+    transform: rotate(180deg);
+    transition: 1s;
+}
+
 /* scroll-bars */
 ::-webkit-scrollbar {
     width: 10px;
