@@ -8,14 +8,18 @@
     --light-icons: #B1B1B1;
     --sent-message: #D5F9BA;
     --notification: #8EDAFC;
+    --bottom:#F3EEEA;
     --body-bg: linear-gradient(180deg, #009688 24.99%, #DCDBD3 25%);
 }
 .wrapper {
     width: 100vw;
     height: 100vh;
+    padding-top: 20px ;
+    padding-bottom: 20px ;
     background-image: var(--body-bg);
     font-family: 'Lato', sans-serif;
 }
+
 .img{
     width: 50px;
     height: 50px;
@@ -56,7 +60,36 @@
 .light-icons{
     color: var(--light-icons);
 }
-.rubrica{
-    height: 65vh;
-    overflow-y: scroll;
+
+.outline-none:focus{
+    outline: none;
+}
+
+.msg-area{
+    background-image: url(/Img/mine.jpg);
+}
+
+.bottom{
+    background-color: var(--bottom);
+}
+
+.send-icon{
+    width: 40px;
+    height: 40px;
+    color: white;
+}
+
+.sent{
+    background-color: var(--sent-message);
+}
+
+.received{
+    background-color: white;
+    align-self: flex-start;
+}
+
+.hour{
+    font-size: 0.6em;
+    bottom:0;
+    right: 0;
 }

@@ -17,18 +17,17 @@
 
 <body>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <div id="app" class="wrapper py-4">
-        <div class="container">
-            <div class="bg-white row">
-
+    <div id="app" class="wrapper">
+        <div class="container h-100">
+            <div class="bg-white h-100 row overflow-hidden">
                 <!-- ACCOUNT-AND-CONTATS-LIST -->
-                <div class=" col-12 col-md-4 p-0">
+                <div class=" col-12 col-md-4 p-0 h-100 d-flex flex-column border-end border-1">
                     <div class="d-flex justify-content-between py-2 px-2 headers">
                         <div class="d-flex align-items-center">
                             <div class="img rounded-circle overflow-hidden mx-2">
                                 <img :src="account.avatar" :alt="account.name" class="w-100">
                             </div>
-                            <div class="dark-text">
+                            <div class="dark-text fw-bold">
                                 {{account.name}}
                             </div>
                         </div>
@@ -55,25 +54,27 @@
                         </div>
                     </div>
                     <div class="search border border-1 p-2">
-                        <div class="input-group">
-                            <span class="input-group-text border-0 bg-white" id="basic-addon1">
+                        <div class="row px-4">
+                            <span class="col-1 border-0 rounded-start-2 bg-white py-2" id="basic-addon1">
                                 <i class="fa-solid fa-magnifying-glass light-icons"></i>
                             </span>
-                            <input type="text" class="form-control border-0 bg-white" placeholder="Cerca o inizia una nuova chat">
+                            <input type="text" class=" col-11 border-0 rounded-end-2 bg-white py-2 outline-none"
+                                placeholder="Cerca o inizia una nuova chat">
                         </div>
                     </div>
-                    <div class="rubrica">
-                        <div  v-for="(contact,index) in contacts" class="p-3 d-flex justify-content-between">
+                    <div class=" overflow-y-auto flex-grow-1">
+                        <div v-for="(contact,index) in contacts" class="p-3 d-flex justify-content-between"
+                            @click="ciao(index)">
                             <div class="d-flex align-items-center">
                                 <div class="img rounded-circle overflow-hidden">
                                     <img :src="contacts[index].avatar" :alt="contacts[index].name" class="w-100">
                                 </div>
                                 <div class="px-2">
-                                    <div>
+                                    <div class="fw-bold">
                                         {{contacts[index].name}}
                                     </div>
-                                    <div>
-                                        {{contacts[index].messages[lastMsg(index)].message}}
+                                    <div class="grey-text">
+                                        {{lastMsg(index)}}
                                     </div>
                                 </div>
                             </div>
@@ -87,8 +88,55 @@
                 </div>
 
                 <!-- MESSAGE-AREA -->
-                <div class=" col-12 col-md-8 bg-danger">
+                <div class=" col-12 col-md-8 p-0 d-flex flex-column">
+                    <div class="d-flex justify-content-between py-2 px-2 headers">
+                        <div class="d-flex align-items-center">
+                            <div class="img rounded-circle overflow-hidden mx-2">
+                                <img :src="contacts[activeIndex].avatar" :alt="contacts[activeIndex].name"
+                                    class="w-100">
+                            </div>
+                            <div class="dark-text fw-bold">
+                                {{contacts[activeIndex].name}}
+                            </div>
+                        </div>
 
+                        <div class="d-flex align-items-center grey-text">
+                            <i class="fa-solid fa-magnifying-glass mx-3"></i>
+                            <i class="fa-solid fa-paperclip"></i>
+                            <i class="fa-solid fa-ellipsis-vertical mx-3"></i>
+
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 d-flex flex-column align-items-end overflow-y-auto msg-area">
+                        <div v-for="(message,index) in contacts[activeIndex].messages"
+                            class="p-3 rounded-3 my-2 mx-1 position-relative" :class="messageStatus(index)">
+                            <div class="py-1">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, ullam!
+                            </div>
+
+                            <div class="hour position-absolute p-1 mx-1">
+                                50:00
+                            </div>
+                        </div>
+
+                    </div>
+                    <div>
+                        <div class="row px-4 bottom mx-0 py-2 align-items-center">
+                            <div class="col-1 grey-text">
+                                <i class="fa-regular fa-face-smile fa-xl"></i>
+                            </div>
+
+                            <input type="text" class=" col-10 border-0 rounded-2 bg-white py-2 outline-none"
+                                placeholder="Scrivi un messaggio">
+                            <div class="col-1 d-flex justify-content-center align-items-center">
+                                <div
+                                    class=" send-icon rounded-circle bg-success d-flex justify-content-center align-items-center">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

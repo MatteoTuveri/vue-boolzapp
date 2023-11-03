@@ -178,29 +178,34 @@ createApp({
             }
           ],
         }
-      ]
+      ],
+      activeIndex:0,
     }
   },
-  methods:{
-    lastMsg(index){
+  methods: {
+
+    ciao(index){
+      this.activeIndex=index;
+    },
+
+    lastMsg(index) {
       let contact = this.contacts[index].messages;
-      return contact.length-1
+      if (contact.length === 0) {
+        return 'Non ci sono messaggi'
+      }
+      else {
+        return this.contacts[index].messages[contact.length - 1].message
+      }
+    },
+
+    messageStatus(index){
+      let status = this.contacts[this.activeIndex].messages[index].status
+      if(status === 'sent'){
+        return 'sent'
+      }
+      else{
+        return 'received'
+      }
     }
   }
 }).mount('#app')
-/* import {contacts} from './data';
-import {account} from './data';
-
-const { createApp } = Vue
-
-createApp({
-  data() {
-    return {
-        contacts : contacts,
-        account : account,
-        ciao :'ciao'
-    }
-  }
-}).mount('#app') */
-
-{/*  */}
