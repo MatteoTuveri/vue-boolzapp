@@ -124,9 +124,9 @@
                             <div class="menu position-absolute p-1 mx-1">
                                 <i class="fa-solid fa-chevron-up fa-xl" @click="menu(index)"></i>
                             </div>
-                            <div v-if="menuWindow === index" class="position-absolute bg-white d-flex flex-column" :class="messageMenu(index)">
+                            <div v-if="clickedMessageID === index" class="position-absolute bg-white d-flex flex-column" :class="messageMenu(index)">
                                 <div class="p-3">Info Messaggio</div>
-                                <div class="p-3">Elimina messaggio</div>
+                                <div class="p-3" @click="deleteMsg(index)">Elimina messaggio</div>
                             </div>
                         </div>
 

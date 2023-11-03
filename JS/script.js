@@ -183,7 +183,6 @@ createApp({
       newMessage: '',
       time: '',
       search: '',
-      menuWindow:null,
       clickedMessageID : null
     }
   },
@@ -232,17 +231,19 @@ createApp({
         return 'menu-r'
       }
     },
-    clickMenu(index){
-
-    },
-
     menu(index){
-      if(this.menuWindow === index){
-        this.menuWindow = null;
+      if(this.clickedMessageID === index){
+        this.clickedMessageID = null;
       }
       else{
-        this.menuWindow = index
+        this.clickedMessageID = index
       }
+    },
+
+    deleteMsg(index){
+      let contact = this.contacts[this.activeIndex].messages;
+      this.contacts[this.activeIndex].messages.splice(index,1);
+      this.clickedMessageID = null;
     },
 
     messageHour(index) {
