@@ -74,7 +74,7 @@
                                         {{contacts[index].name}}
                                     </div>
                                     <div class="grey-text">
-                                        {{lastMsg(index)}}
+                                        <em v-if=" contact.messages[contacts[index].messages.length - 1].status === 'sent'" class="fw-bold">Tu: </em>{{lastMsg(index)}}
                                     </div>
                                 </div>
                             </div>

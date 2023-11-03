@@ -230,9 +230,10 @@ createApp({
         }
         this.newMessage = '';
         this.contacts[this.activeIndex].messages.push(msg);
+        setTimeout(this.answer,1000);
       }
 
-      setTimeout(this.answer,1000);
+
     },
     answer(){
       this.hours();
@@ -249,7 +250,7 @@ createApp({
       let mounth = d.getMonth();
       let year = d.getFullYear();
       let h = d.getHours();
-      let m = d.getMinutes();
+      let m =(d.getMinutes()< 10 ? '0' : '') + d.getMinutes();
       let s = d.getSeconds();
       let time = day + '/' + mounth + '/' + year + ' ' + h + ":" + m + ":" + s;
       this.time = time
