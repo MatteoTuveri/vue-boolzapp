@@ -1,4 +1,7 @@
-
+export const account ={
+    name: 'Michele',
+    avatar: 'Img/avatar_1.jpg'
+}
 export const contacts = [
     {
         id: 1,

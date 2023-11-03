@@ -1,0 +1,62 @@
+:root {
+    --white: #FFFFFF;
+    --dark-text: #161012;
+    --dark-grey: #6B7376;
+    --text-grey: #B6BBC1;
+    --headers: #EAEAEA;
+    --contact-active: #E9EBEB;
+    --light-icons: #B1B1B1;
+    --sent-message: #D5F9BA;
+    --notification: #8EDAFC;
+    --body-bg: linear-gradient(180deg, #009688 24.99%, #DCDBD3 25%);
+}
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+    background-image: var(--body-bg);
+    font-family: 'Lato', sans-serif;
+}
+.img{
+    width: 50px;
+    height: 50px;
+}
+
+.headers{
+    background-color: var(--headers);
+}
+
+.dark-text{
+    color: var(--dark-text);
+}
+
+.grey-text{
+    color: var(--text-grey);
+}
+
+.notification{
+    background-color: var(--notification);
+}
+
+.not-icon{
+    width: 60px;
+    height: 60px;
+    color: var(--notification);
+    font-size: 1.5em;
+}
+
+.not-text{
+    color: rgb(0, 0, 0,.5);
+    font-size: 0.8em;
+}
+
+.search{
+    background-color: rgb(251, 251, 251);
+}
+
+.light-icons{
+    color: var(--light-icons);
+}
+.rubrica{
+    height: 65vh;
+    overflow-y: scroll;
+}
