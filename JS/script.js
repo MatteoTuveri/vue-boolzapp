@@ -204,13 +204,19 @@ createApp({
     },
 
     messageStatus(index){
-      let status = this.contacts[this.activeIndex].messages[index].status
+      let status = this.contacts[this.activeIndex].messages[index].status;
       if(status === 'sent'){
         return 'sent'
       }
       else{
         return 'received'
       }
+    },
+
+    messageHour(index){
+      let dayAndHour = this.contacts[this.activeIndex].messages[index].date.split(' ');
+      let hour = dayAndHour[dayAndHour.length-1].split(':')
+      return `${hour[0]}:${hour[1]}`
     }
   }
 }).mount('#app')
