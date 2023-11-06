@@ -183,13 +183,18 @@ createApp({
       newMessage: '',
       time: '',
       search: '',
-      clickedMessageID : null
+      clickedMessageID: null,
+      showChat: false
     }
   },
   methods: {
 
     activation(index) {
       this.activeIndex = index;
+      this.chatActive();
+    },
+    chatActive() {
+      this.showChat = !this.showChat
     },
     active(index) {
       if (this.activeIndex === index) {
@@ -207,42 +212,71 @@ createApp({
       }
     },
 
+    lastMsgStatus(index){
+      let result = this.lastMsg(index);
+      if(result === 'Non ci sono messaggi'){
+        return false;
+      }
+      else{
+        if(this.contacts[index].messages[this.contacts[index].messages.length - 1].status === 'sent'){
+          return true;
+        }
+        else{
+          return false;
+        } 
+      }
+    },
+
     lastMsgHour(index) {
-      let contact = this.contacts[index].messages[this.contacts[index].messages.length - 1].date.split(' ');
-      let hour = contact[contact.length - 1].split(':');
-      return `${hour[0]}:${hour[1]}`
+      let message = this.contacts[index].messages;
+      if (message.length !== 0) {
+        let contact = this.contacts[index].messages[this.contacts[index].messages.length - 1].date.split(' ');
+        let hour = contact[contact.length - 1].split(':');
+        return `${hour[0]}:${hour[1]}`
+      }
+      else {
+        return '';
+      }
     },
 
     messageStatus(index) {
-      let status = this.contacts[this.activeIndex].messages[index].status;
-      if (status === 'sent') {
-        return 'sent'
+      let message = this.contacts[this.activeIndex].messages;
+      if (message.length !== 0) {
+        let status = this.contacts[this.activeIndex].messages[index].status;
+        if (status === 'sent') {
+          return 'sent'
+        }
+        else {
+          return 'received'
+        }
       }
       else {
-        return 'received'
+        return '';
       }
     },
     messageMenu(index) {
-      let status = this.contacts[this.activeIndex].messages[index].status;
-      if (status === 'sent') {
-        return 'menu-s'
-      }
-      else {
-        return 'menu-r'
+      let message = this.contacts[this.activeIndex].messages;
+      if (message.length !== 0) {
+        let status = this.contacts[this.activeIndex].messages[index].status;
+        if (status === 'sent') {
+          return 'menu-s'
+        }
+        else {
+          return 'menu-r'
+        }
       }
     },
-    menu(index){
-      if(this.clickedMessageID === index){
+    menu(index) {
+      if (this.clickedMessageID === index) {
         this.clickedMessageID = null;
       }
-      else{
+      else {
         this.clickedMessageID = index
       }
     },
 
-    deleteMsg(index){
-      let contact = this.contacts[this.activeIndex].messages;
-      this.contacts[this.activeIndex].messages.splice(index,1);
+    deleteMsg(index) {
+      this.contacts[this.activeIndex].messages.splice(index, 1);
       this.clickedMessageID = null;
     },
 
@@ -286,11 +320,11 @@ createApp({
       let time = day + '/' + mounth + '/' + year + ' ' + h + ":" + m + ":" + s;
       this.time = time
     },
-    filter(contact){
-      if (contact.visible){
+    filter(contact) {
+      if (contact.visible) {
         return 'd-flex'
       }
-      else{
+      else {
         return 'd-none'
       }
     },
