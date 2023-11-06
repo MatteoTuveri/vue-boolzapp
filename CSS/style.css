@@ -124,11 +124,11 @@
     width: 200px;
 }
 
-.rotate0{
+.rotate180{
     transform: rotate(0deg);
     transition: 1s;
 }
-.rotate180{
+.rotate180:hover{
     transform: rotate(180deg);
     transition: 1s;
 }

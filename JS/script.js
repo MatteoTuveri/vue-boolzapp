@@ -214,18 +214,18 @@ createApp({
       }
     },
 
-    lastMsgStatus(index){
+    lastMsgStatus(index) {
       let result = this.lastMsg(index);
-      if(result === 'Non ci sono messaggi'){
+      if (result === 'Non ci sono messaggi') {
         return false;
       }
-      else{
-        if(this.contacts[index].messages[this.contacts[index].messages.length - 1].status === 'sent'){
+      else {
+        if (this.contacts[index].messages[this.contacts[index].messages.length - 1].status === 'sent') {
           return true;
         }
-        else{
+        else {
           return false;
-        } 
+        }
       }
     },
 
@@ -269,6 +269,7 @@ createApp({
       }
     },
     menu(index) {
+      this.rotateIcon = !this.rotateIcon
       if (this.clickedMessageID === index) {
         this.clickedMessageID = null;
       }
