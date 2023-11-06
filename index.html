@@ -21,7 +21,8 @@
         <div class="container h-100">
             <div class="bg-white h-100 row overflow-hidden">
                 <!-- ACCOUNT-AND-CONTATS-LIST -->
-                <div class=" col-12 col-md-4 p-0 h-100 d-flex flex-column border-end border-1 scroll d-md-flex" :class="{'d-none': showChat}">
+                <div class=" col-12 col-md-4 p-0 h-100 d-flex flex-column border-end border-1 scroll d-md-flex"
+                    :class="{'d-none': showChat}">
                     <div class="d-flex justify-content-between py-2 px-2 headers">
                         <div class="d-flex align-items-center">
                             <div class="img rounded-circle overflow-hidden mx-2">
@@ -40,11 +41,13 @@
                         </div>
                     </div>
                     <div class="notification d-flex align-items-center py-2 px-2">
-                        <div
-                            class="not-icon rounded-circle bg-white mx-2 d-flex justify-content-center align-items-center">
-                            <i class="fa-solid fa-bell-slash"></i>
+                        <div class="col-2">
+                            <div class="not-icon rounded-circle bg-white d-flex justify-content-center align-items-center">
+                                <i class="fa-solid fa-bell-slash fa-xs"></i>
+                            </div>
                         </div>
-                        <div>
+
+                        <div class="flex-grow-1">
                             <div>
                                 Ricevi notifiche di nuovi messaggi
                             </div>
@@ -63,7 +66,8 @@
                         </div>
                     </div>
                     <div class=" overflow-y-auto flex-grow-1">
-                        <div v-for="(contact,index) in contacts" class="contact p-3 justify-content-between align-items-center"
+                        <div v-for="(contact,index) in contacts"
+                            class="contact p-3 justify-content-between align-items-center"
                             :class="[filter(contact),active(index)]" @click="activation(index)">
 
                             <div class="d-flex align-items-center">
@@ -75,15 +79,14 @@
                                         {{contacts[index].name}}
                                     </div>
                                     <div class="grey-text">
-                                        <em v-if="lastMsgStatus(index)"
-                                            class="fw-bold">Tu: 
+                                        <em v-if="lastMsgStatus(index)" class="fw-bold">Tu:
                                         </em>
                                         {{lastMsg(index)}}
                                     </div>
                                 </div>
                             </div>
                             <div class="grey-text">
-                               {{lastMsgHour(index)}}
+                                {{lastMsgHour(index)}}
                             </div>
 
                         </div>
@@ -106,7 +109,7 @@
                         </div>
 
                         <div class="d-flex align-items-center grey-text">
-                            <i class="fa-solid fa-arrow-left" @click="chatActive"></i>
+                            <i class="fa-solid fa-arrow-left d-md-none" @click="chatActive"></i>
                             <i class="fa-solid fa-magnifying-glass mx-3"></i>
                             <i class="fa-solid fa-paperclip"></i>
                             <i class="fa-solid fa-ellipsis-vertical mx-3"></i>
@@ -127,7 +130,8 @@
                             <div class="menu position-absolute p-1 mx-1">
                                 <i class="fa-solid fa-chevron-up fa-xl" @click="menu(index)"></i>
                             </div>
-                            <div v-if="clickedMessageID === index" class="position-absolute bg-white d-flex flex-column" :class="messageMenu(index)">
+                            <div v-if="clickedMessageID === index && showMenu" class="position-absolute bg-white d-flex flex-column"
+                                :class="messageMenu(index)">
                                 <div class="p-3">Info Messaggio</div>
                                 <div class="p-3" @click="deleteMsg(index)">Elimina messaggio</div>
                             </div>
@@ -135,14 +139,14 @@
 
                     </div>
                     <div>
-                        <div class="row px-4 bottom mx-0 py-2 align-items-center">
-                            <div class="col-1 grey-text">
+                        <div class="d-flex px-4 bottom mx-0 py-2 align-items-center">
+                            <div class="col-1 grey-text d-flex justify-content-center">
                                 <i class="fa-regular fa-face-smile fa-xl"></i>
                             </div>
 
-                            <input type="text" class=" col-10 border-0 rounded-2 bg-white py-2 outline-none"
+                            <input type="text" class=" flex-grow-1 border-0 rounded-2 bg-white py-2 outline-none"
                                 placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="sendMsg">
-                            <div class="col-1 d-flex justify-content-center align-items-center">
+                            <div class="col-2 d-flex justify-content-center align-items-center">
                                 <div class=" send-icon rounded-circle bg-success d-flex justify-content-center align-items-center"
                                     @click="sendMsg()">
                                     <i class="fa-solid fa-paper-plane"></i>

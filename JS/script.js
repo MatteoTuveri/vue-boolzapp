@@ -184,7 +184,8 @@ createApp({
       time: '',
       search: '',
       clickedMessageID: null,
-      showChat: false
+      showChat: false,
+      showMenu: true
     }
   },
   methods: {
@@ -192,6 +193,7 @@ createApp({
     activation(index) {
       this.activeIndex = index;
       this.chatActive();
+      this.showMenu = false;
     },
     chatActive() {
       this.showChat = !this.showChat
@@ -272,6 +274,7 @@ createApp({
       }
       else {
         this.clickedMessageID = index
+        this.showMenu = true
       }
     },
 
