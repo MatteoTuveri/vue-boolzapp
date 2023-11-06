@@ -185,7 +185,8 @@ createApp({
       search: '',
       clickedMessageID: null,
       showChat: false,
-      showMenu: true
+      showMenu: true,
+      chatOptions: false
     }
   },
   methods: {
@@ -194,6 +195,7 @@ createApp({
       this.activeIndex = index;
       this.chatActive();
       this.showMenu = false;
+      this.chatOptions= false;
     },
     chatActive() {
       this.showChat = !this.showChat
@@ -332,6 +334,13 @@ createApp({
         return 'd-none'
       }
     },
+    chatOpt(){
+      this.chatOptions=!this.chatOptions
+    },
+    deleteChat(){
+      let msgIndex = this.contacts[this.activeIndex]
+      msgIndex.messages.splice(0,msgIndex.messages.length);
+    }
 
   },
   computed: {

@@ -133,6 +133,13 @@
     transition: 1s;
 }
 
+.chat-options{
+    z-index: 2000;
+    width: 150px;
+    top: 115%;
+    right: 2px;
+}
+
 /* scroll-bars */
 ::-webkit-scrollbar {
     width: 10px;
