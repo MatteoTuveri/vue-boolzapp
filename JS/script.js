@@ -186,7 +186,8 @@ createApp({
       clickedMessageID: null,
       showChat: false,
       showMenu: true,
-      chatOptions: false
+      chatOptions: false,
+      audio : true
     }
   },
   methods: {
@@ -344,6 +345,14 @@ createApp({
 
   },
   computed: {
+    audioAndSend(){
+      if (this.newMessage.trim().length !== 0) {
+        this.audio = false;
+      }
+      else{
+        this.audio = true;
+      }
+    },
     searchFilter() {
       this.contacts.forEach(element => {
         let convertFind = this.search.toUpperCase();

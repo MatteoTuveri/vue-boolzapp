@@ -153,7 +153,12 @@
                             <input type="text" class="flex-grow-1 border-0 rounded-2 bg-white p-2 outline-none"
                                 placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="sendMsg">
                             <div class="col-2 d-flex justify-content-center align-items-center">
-                                <div class=" send-icon rounded-circle bg-success d-flex justify-content-center align-items-center"
+                                <div v-if="audio"
+                                    class="send-icon rounded-circle bg-success d-flex justify-content-center align-items-center">
+                                    <i class="fa-solid fa-microphone"></i>
+                                </div>
+                                <div v-else
+                                    class=" send-icon rounded-circle bg-success d-flex justify-content-center align-items-center"
                                     @click="sendMsg()">
                                     <i class="fa-solid fa-paper-plane"></i>
                                 </div>
